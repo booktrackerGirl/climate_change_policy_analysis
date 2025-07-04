@@ -1,0 +1,5 @@
+/venv_climate
+/src/exploratory_data_analysis.ipynb
+/src/summarizer_script.py
+/output_data/summarized*
+/output_data/content_data_checkpoint*
