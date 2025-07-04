@@ -32,12 +32,6 @@ HEADERS = {
                   "(KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
 }
 
-'''SOCKS_PROXIES = [
-    "socks5h://142.54.228.193:4145",
-    "socks5h://37.52.13.164:5678",
-    "socks5h://8.217.205.168:8888",
-]'''
-
 import psutil
 
 def clean_text(val):
@@ -50,7 +44,7 @@ def kill_orphan_chrome():
         if proc.info["name"] and "chrome" in proc.info["name"].lower():
             try:
                 proc.kill()
-                print(f"🧹 Killed leftover Chrome process: {proc.info['pid']}")
+                print(f"Killed leftover Chrome process: {proc.info['pid']}")
             except:
                 pass
 
@@ -151,20 +145,6 @@ class PDFExtractor:
             text = "\n".join([page.get_text() for page in doc])
             return {"text": text.strip(), "metadata": {"pdf_url": url, "title": None, "author": None, "num_pages": len(doc)}}
         except: return None
-
-    '''def _extract_with_proxies(self, url):
-        for proxy in SOCKS_PROXIES:
-            try:
-                r = requests.get(url, proxies={"http": proxy, "https": proxy}, timeout=15)
-                if "pdf" not in r.headers.get("Content-Type", ""):
-                    continue
-                with io.BytesIO(r.content) as f:
-                    with pdfplumber.open(f) as pdf:
-                        text = "".join([p.extract_text() or "" for p in pdf.pages])
-                        meta = pdf.metadata
-                return {"text": text.strip(), "metadata": {"pdf_url": r.url, "title": meta.get("Title"), "author": meta.get("Author"), "num_pages": len(pdf.pages)}}
-            except: continue
-        return None'''
     
     def _extract_unfccc_pdf(self, url):
         """
@@ -588,7 +568,7 @@ class PDFExtractor:
             return result
         
         
-        # 4. Multi-purpose  Check
+        # 4. Multi-purpose Check
         print(f"Trying Multi-purpose PDF Check for {url}")
         result = self._extract_from_url_auto(url)
         if result and result.get("text"):
