@@ -8,7 +8,7 @@ Using the Climate Change Laws of the World database, develop a quantitative indi
      - Spans 196+ countries and territories.
      - Each record includes researcher-written summaries, classifications (e.g. adaptation, mitigation, disaster risk management), metadata like enactment dates, coverage type, and legislative processes. 
 - <b>Code</b>: [Jupyter Notebook on classifying the climate policy indicator using text-based analysis](./src/#climate_policy_indicator.ipynb)
-     - Using the text in the summaries, we pre-process the text accordingly on both English and non-English texts. Upon which, I use sentence embeddings to create features as an input to a simple neural network, which classifies the topic or theme of the policies in a multi-label format. I also create an additional feature called ambition score which can be used in the embedding.
+     - I preprocess the policy summaries in both English and non-English languages to clean and standardize the text. Sentence embeddings are then generated from the processed text to serve as input features for a simple neural network, which performs multi-label classification to identify the topics or themes of the policies. Additionally, I construct an ambition score as a supplementary feature, which can be incorporated into the embedding to enrich the model's representation.
 
 ## Task 2 overview (Statistical/ComputationalAnalysis)
 Select one or more credible health indicators (e.g., from WHO, Global Burden of Disease, or World Bank) and justify your choice based on its relevance to climate policy or political engagement. Then, conduct a quantitative analysis—such as a panel data model—to examine the relationship between your climate policy indicator and the selected health outcome(s).
@@ -19,7 +19,11 @@ Select one or more credible health indicators (e.g., from WHO, Global Burden of 
           - WDI dataset (which is a flagship project of World Bank) which contain environmental, health, economic, demographic and social indicators that spans over time and approximately 217 countries and over 40 country groupings. The dataset I used is a filtered subset of the full dataset, and contain information from 2015 onwards.
 - <b>Code</b>:
     - [Data Linkage code](./src/#preparing_data.ipynb)
-      Using the country codes and years from the CCLW dataset, we create one hot encoding of the policy themes and calculate the number of policy themes traversed by each country along the years. Using the same information from the WDI dataset, we join them to prepare them for our hypothesis testing.
+      Using the country codes and years from the CCLW dataset, I apply one-hot encoding to the policy themes and calculate the number of unique themes (or topics) addressed by each country over time. Then I merge this data with corresponding country-year information from the WDI dataset, enabling a unified panel structure for hypothesis testing and quantitative analysis.
     - [Hypothesis testing of the significance of the indicators by policy laws](./src/#statistical_analysis.R)
  
-  ## Additional experimentation
+## Additional experimentation
+It was observed that the policy summaries in the CCLW dataset often lacked sufficient detail for reliable text analysis and theme identification. To address this, I developed a Python script to efficiently scrape full content from the associated URLs of policy documents and web pages ([web scrapping](./src/#extract_content.py)). These sources are frequently more secure than typical websites, requiring careful handling. To further process the often lengthy documents (sometimes even exceeding 30 pages), I also created a [summarization script](./src/#summarizer_script.py) to distill the content into more manageable and informative summaries. This approach provides a more resource-efficient and content-rich alternative to the original summaries, enabling deeper and more meaningful computational text analysis. To streamline the workflow, I documented a [shell script](./src/#run_summarizer.sh) that automates the execution of both steps.
+
+
+
