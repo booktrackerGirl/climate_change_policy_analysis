@@ -1,3 +1,4 @@
+# Install and import the libraries
 library(ggplot2)
 library(dplyr)
 #install.packages("plm")
@@ -8,12 +9,12 @@ library(plm)
 library(lmtest)
 library(sandwich)
 library(car)
-install.packages("tidyr")
+#install.packages("tidyr")
 library(tidyr)
 
 panel_df <- read.csv('../output_data/panel_dataset.csv')
 
-# Define your policy variables
+# Define the policy variables
 policy_vars <- c("Mitigation", "Adaptation", "Disaster_Risk_Management", "Loss_and_Damage")
 
 # Define dependent variables: all columns after 'Year' excluding policy vars
@@ -221,9 +222,9 @@ ggsave("../images/policy_effects_plot.png", width = 7, height = 5, dpi = 300)
 
 
 #########################################
+#### Distibution of the values for the policy variables across years for one country. Only the top 10 countries (based on their average value for that policy variable over time) are shown.
 
-
-# Reshape to long format
+# Reshape the dataframe to long format
 long_df <- panel_df %>%
   select(Country.Name, Year, all_of(policy_vars)) %>%
   pivot_longer(cols = all_of(policy_vars), names_to = "Policy_Var", values_to = "Value")
@@ -265,3 +266,4 @@ ggplot(plot_df, aes(y = reorder(Country.Name, Value, FUN = median), x = Value, f
 
 ggsave("../images/policy_by_country.png", width = 7, height = 4, dpi = 300)
 
+#######################################################
