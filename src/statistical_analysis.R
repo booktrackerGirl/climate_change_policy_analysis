@@ -11,6 +11,9 @@ library(sandwich)
 library(car)
 #install.packages("tidyr")
 library(tidyr)
+library(FactoMineR)
+#install.packages('factoextra')
+library(factoextra)
 
 panel_df <- read.csv('../output_data/panel_dataset.csv')
 
@@ -267,3 +270,52 @@ ggplot(plot_df, aes(y = reorder(Country.Name, Value, FUN = median), x = Value, f
 ggsave("../images/policy_by_country.png", width = 7, height = 4, dpi = 300)
 
 #######################################################
+##### Correspondence analysis to explore patterns and associations between countries and policy categories
+
+policy_matrix <- panel_df %>%
+  group_by(Country.Name) %>%
+  summarise(across(
+    c(Mitigation, Adaptation, Disaster_Risk_Management, Loss_and_Damage),
+    ~ mean(.x, na.rm = TRUE)
+  )) %>%
+  column_to_rownames("Country.Name")
+
+ca_result <- CA(policy_matrix, graph = FALSE)
+
+# Extract row contributions
+row_contrib <- ca_result$row$contrib[, 1] # For the Dim 1
+
+## pick top 50 countries
+top_countries <- names(sort(row_contrib, decreasing=TRUE))[1:50]
+
+
+# My handpicked countries (e.g., G7)
+g7_countries <- c("United States", "Canada", "France", "Germany", "Italy", "Japan", "United Kingdom")
+
+# Combine both (removing duplicates)
+selected_countries <- unique(c(top_countries, g7_countries))
+
+
+## Subset data for just those countries
+filtered_table <- policy_matrix[rownames(policy_matrix) %in% selected_countries, ]
+
+## Redo CA and plot
+reduced_ca <- CA(filtered_table)
+
+fviz_ca_biplot(
+  reduced_ca, 
+  repel = TRUE,
+  title = "Correspondence Analysis: Countries and Policy Emphasis",
+  col.row = "blue",  # Countries
+  col.col = "red",  # Policy types
+  labelsize = 3, pointsize = 2,
+    )+
+  theme(
+    panel.grid = element_blank(), # remove grid lines
+    panel.background = element_rect(fill = "white"),  # white background
+    plot.background = element_rect(fill = "white", color = NA),
+  )
+
+ggsave("../images/correspondence_analysis.png", width = 10, height = 6, dpi = 300)
+
+#############################################################################
