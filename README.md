@@ -100,7 +100,7 @@ It was observed that the policy summaries in the CCLW dataset often lacked suffi
      ```bash
      Rscript src/statistical_analysis.R
 11) **View results**:
-     - Outputs will be saved in outputs/ or printed in notebooks/scripts
+     - Outputs saved in outputs/ or printed in notebooks/scripts
      - Figures generated for review and stored in ```images/```
 
    
