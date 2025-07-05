@@ -84,12 +84,13 @@ It was observed that the policy summaries in the CCLW dataset often lacked suffi
        ```bash
        bash run_summarizer.sh
    Note: It was **NOT** used in our analysis for this task. But it was tested to verify its usage in the classification task. Alternate to the existing summary from the dataset, the new summary field can be used to enhance model performance in the next step.
-7) **Run the climate policy classification using the kernel environment as yourpythonenvironment**:
+   
+8) **Run the climate policy classification**:
      ```bash
      jupyter notebook src/climate_policy_indicator.ipynb
-8) **View outputs**:
+9) **View outputs**:
      - Check visualization in ```images/```
-9) **Prepare merged dataset for hypothesis testing**:
+10) **Prepare merged dataset for hypothesis testing**:
      ```bash
      jupyter notebook src/preparing_data.ipynb```
 
