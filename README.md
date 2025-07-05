@@ -92,7 +92,7 @@ It was observed that the policy summaries in the CCLW dataset often lacked suffi
      - Check visualization in ```images/```
 10) **Prepare merged dataset for hypothesis testing**:
      ```bash
-     jupyter notebook src/preparing_data.ipynb```
+     jupyter notebook src/preparing_data.ipynb
 
 - Resulting dataset stored in ```output_data/panel_dataset.csv```
 10) **Run hypothesis testing analysis**:
