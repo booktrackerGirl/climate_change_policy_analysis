@@ -83,6 +83,7 @@ It was observed that the policy summaries in the CCLW dataset often lacked suffi
      - To scrape full text from policy URLs and generate summaries:
        ```bash
        bash run_summarizer.sh
+   Note: It was **NOT** used in our analysis for this task.
 7) **Run the climate policy classification using the kernel environment as yourpythonenvironment**:
      ```bash
      jupyter notebook src/climate_policy_indicator.ipynb
