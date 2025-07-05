@@ -29,7 +29,7 @@ This project uses:
 - [Climate Change Laws of the World (CCLW)](https://climate-laws.org/)
 - [World Development Indicators (WDI)](https://databank.worldbank.org/source/world-development-indicators)
 
-Please the downloaded data in the `data/` folder in their csv format.
+Please keep the downloaded data in the `data/` folder in their csv format.
 
 ## Eperimental Setup
 ### Task 1 overview (ClimatePolicyIndicatorDevelopment)
