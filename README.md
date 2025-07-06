@@ -64,8 +64,8 @@ It was observed that the policy summaries in the CCLW dataset often lacked suffi
 
 1) **Clone the repository**:
      ```bash
-     git clone https://github.com/yourusername/yourproject.git
-     cd yourproject
+     git clone https://github.com/booktrackerGirl/climate_change_policy_analysis.git yourprojectname
+     cd yourprojectname
 2) **Create a virtual environment**:
      ```bash
      python -m venv yourpythonenvironment
