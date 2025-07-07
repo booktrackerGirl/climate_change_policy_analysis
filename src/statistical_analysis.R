@@ -227,8 +227,8 @@ ggsave("../images/policy_effects_plot.png", width = 7, height = 5, dpi = 300)
 #########################################
 #### Distibution of the values for the policy variables across years for one country. Only the top 10 countries (based on their average value for that policy variable over time) are shown.
 
-# Reshape the dataframe to long format
-long_df <- panel_df %>%
+# Reshape to long format
+long_df <- panel_df_std %>%
   select(Country.Name, Year, all_of(policy_vars)) %>%
   pivot_longer(cols = all_of(policy_vars), names_to = "Policy_Var", values_to = "Value")
 
@@ -244,11 +244,11 @@ top_countries <- avg_policy %>%
   slice_head(n = 10)
 
 # Filter long data for those countries
-plot_df <- long_df %>%
+panel_df_std <- long_df %>%
   semi_join(top_countries, by = c("Policy_Var", "Country.Name"))
 
 # Horizontal boxplots with facets in one row
-ggplot(plot_df, aes(y = reorder(Country.Name, Value, FUN = median), x = Value, fill = Policy_Var)) +
+ggplot(panel_df_std, aes(y = reorder(Country.Name, Value, FUN = median), x = Value, fill = Policy_Var)) +
   geom_boxplot(alpha = 0.85) +
   facet_wrap(~ Policy_Var, nrow = 1, scales = "free_x") +
   scale_fill_brewer(palette = "Set2") +
