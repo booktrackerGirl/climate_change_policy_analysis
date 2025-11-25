@@ -1,7 +1,7 @@
 # Climate Policy Text Analysis
 A machine learning pipeline to analyze national climate change policies using text classification, embedding models, and health indicator correlations.
 
-This is a repository for the pre-interview task, as assigned for the interview stage in the **Lancet Countdown: Tracking Progress on Health and Climate Change (Working Group on Public and Political Engagement, WG5)** project.
+This is a repository for the paper/proposal named [**Quantifying Climate Policy Action and Its Links to Development Outcomes: A Cross-National Data-Driven Analysis**](https://arxiv.org/pdf/2510.17425), which is accepted in NeurIPS 2025 workshop on Tackling Climate Change with Machine Learning.
 
 ## Repository Structure
     .
