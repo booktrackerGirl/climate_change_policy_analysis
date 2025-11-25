@@ -104,5 +104,16 @@ It was observed that the policy summaries in the CCLW dataset often lacked suffi
      - Figures generated for review and stored in ```images/```
 
    
-
+## Citation
+For accurate citation in LaTeX, please use the following BibTeX entry:
+```
+@article{dutta2025quantifying,
+  title   = {Quantifying Climate Policy Action and Its Links to Development Outcomes: A Cross-National Data-Driven Analysis},
+  author  = {Dutta, Aditi},
+  journal = {arXiv preprint arXiv:2510.17425},
+  year    = {2025},
+  doi     = {10.48550/arXiv.2510.17425},
+  url     = {https://arxiv.org/abs/2510.17425}
+}
+```
 
